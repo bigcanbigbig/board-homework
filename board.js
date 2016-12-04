@@ -1,21 +1,24 @@
 var path = require('path');
 
-var board = require('express')();
+var app = require('express')();
 var partials = require('express-partials');
 var static = require('serve-static');
 var bodyParser = require('body-parser');
 
 var page = require('./routes/page');
 
-board.use(bodyParser.json()); 
-board.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true}));
 
-board.use(partials());
-board.set('views', path.join(__dirname, 'views'));
-board.set('view engine', 'ejs');
+app.use(partials());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('port', (process.env.PORT || 3000));
 
-board.use( static( path.join( __dirname, 'public' )));
+app.use( static( path.join( __dirname, 'public' )));
 
-board.get('/', page.index);
+app.get('/', page.index);
 
-board.listen(3000);
+var server = app.listen(app.get('port'), function() {  
+  console.log('Listening on port 3000');  
+});
