@@ -21,6 +21,7 @@ firebase.database().ref('/message').once('value').then(function(snapshot) {
   message=snapshot.val();
 });
 
+
 function writeMessageData(num, name, content) {
   var msgRef = database.ref('message/'+num);
   msgRef.set({
@@ -29,9 +30,17 @@ function writeMessageData(num, name, content) {
   });
   message= new Array();
   firebase.database().ref('/message').once('value').then(function(snapshot) {
-  //console.log(snapshot.val());
-  message=snapshot.val();
-});
+    //console.log(snapshot.val());
+    message=snapshot.val();
+  });
+}
+
+function refresh(){
+  message= new Array();
+  firebase.database().ref('/message').once('value').then(function(snapshot) {
+    //console.log(snapshot.val());
+    message=snapshot.val();
+  });
 }
 
 /*****************--------*****************/
@@ -39,10 +48,10 @@ function writeMessageData(num, name, content) {
 /*****************--------*****************/
 
 exports.index = function(req, res) {
-
         res.render('pages/index', {
             ogheadTitle: '首頁內容',
             listdata: message,
+            refresh: refresh
         });
 
 };

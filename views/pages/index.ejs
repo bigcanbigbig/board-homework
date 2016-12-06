@@ -1,3 +1,14 @@
+<script>
+window.onbeforeunload=function (){
+alert("===onbeforeunload===");
+if(event.clientX>document.body.clientWidth && event.clientY < 0 || event.altKey){
+	//關閉視窗
+}else{
+	//刷新視窗
+     <% refresh(); %>
+}
+}
+</script>
 <h1><%= ogheadTitle %></h1> 
 <!-- <img src="images/banner141229.jpg" alt=""> -->
 <table>
