@@ -14,20 +14,25 @@ var config = {
  firebase.initializeApp(config);
  var database = firebase.database();
  
+
+var message= new Array();
+firebase.database().ref('/message').once('value').then(function(snapshot) {
+  //console.log(snapshot.val());
+  message=snapshot.val();
+});
+
 function writeMessageData(num, name, content) {
   var msgRef = database.ref('message/'+num);
   msgRef.set({
     name: name,
     content: content
- });
- 
-}
-
-var message= new Array();
-firebase.database().ref('/message').once('value').then(function(snapshot) {
-  console.log(snapshot.val());
+  });
+  message= new Array();
+  firebase.database().ref('/message').once('value').then(function(snapshot) {
+  //console.log(snapshot.val());
   message=snapshot.val();
 });
+}
 
 /*****************--------*****************/
 /*****************--------*****************/
@@ -37,7 +42,7 @@ exports.index = function(req, res) {
 
         res.render('pages/index', {
             ogheadTitle: '首頁內容',
-            listdata: message
+            listdata: message,
         });
 
 };
@@ -53,7 +58,6 @@ exports.post = function(req, res) {
     content = req.body.content;
     res.render('pages/success');
     writeMessageData(num,name,content);
-    
 };
 
 
