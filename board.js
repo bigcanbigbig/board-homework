@@ -32,7 +32,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.get('/', page.index);
 app.post('/post',page.post);
 
-//app.get('/getJson', page.getJson);
+app.get('/delete', page.delete);
 
 
 
