@@ -16,5 +16,17 @@
     "gcloud": "^0.37.0",
     "serve-favicon": "^2.3.0",
     "serve-static": "^1.10.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigcanbigbig/board-homework.git"
+  },
+  "engines": {
+    "node": "6.9.1"
+  },
+  "bugs": {
+    "url": "https://github.com/bigcanbigbig/board-homework/issues"
+  },
+  "homepage": "https://github.com/bigcanbigbig/board-homework#readme"
 }
